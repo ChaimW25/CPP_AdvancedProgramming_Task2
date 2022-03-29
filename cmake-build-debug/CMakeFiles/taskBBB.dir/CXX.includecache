@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/chaimw/CLionProjects/taskBBB/main.cpp
+iostream
+-
+sources/Notebook.cpp
+/home/chaimw/CLionProjects/taskBBB/sources/Notebook.cpp
+
+/home/chaimw/CLionProjects/taskBBB/sources/Direction.hpp
+
+/home/chaimw/CLionProjects/taskBBB/sources/Notebook.cpp
+Notebook.hpp
+/home/chaimw/CLionProjects/taskBBB/sources/Notebook.hpp
+cstring
+-
+
+/home/chaimw/CLionProjects/taskBBB/sources/Notebook.hpp
+string
+/home/chaimw/CLionProjects/taskBBB/sources/string
+iostream
+-
+unordered_map
+-
+Direction.hpp
+/home/chaimw/CLionProjects/taskBBB/sources/Direction.hpp
+map
+-
+
