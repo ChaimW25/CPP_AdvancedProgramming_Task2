@@ -9,25 +9,12 @@ using namespace std;
 const int rowLen=100;
 const int minChar=32;
 const int maxChar=126;
+//const int underScore=95;
+
 
 
 
 namespace ariel {
-
-//    class Row{
-//    public:
-//        int rowNum;
-//        unordered_map<int,char> colNum;
-//        Row(int rowNum){
-//        }
-//    };
-//    class Page{
-//    public:
-//        int pageNum;
-//        unordered_map<int,Row>> row;
-//        Page(int pageNum){
-//        }
-//    };
 
     class Notebook {
 
@@ -36,11 +23,11 @@ namespace ariel {
         //        unordered_map<int, string> rowNum;
 //        unordered_map<int, rowNum> pageNum;
         Notebook(){}
-        void write( int page,   int col,   int  row, ariel::Direction dir, string str);
+        void write( int page, int  row,  int col,    ariel::Direction dir, string str);
 
-        string read( int page,   int col,   int  row, ariel::Direction dir,   int numOfChars);
+        string read( int page,int  row,    int col,   ariel::Direction dir,   int numOfChars);
 
-        void erase( int page,   int col,   int  row, ariel::Direction dir,   int numOfChars);
+        void erase( int page, int  row,  int col,    ariel::Direction dir,   int numOfChars);
 
         int show(int num);
 
