@@ -18,10 +18,10 @@ namespace ariel {
                     throw("Illegal arguments");
                 }
                 for (int i = 0; i < len; i++) {
-                    if(str[(size_t) i]<minChar || str[(size_t) i]>maxChar){
+                    if(str[(size_t) i]<minChar || str[(size_t) i]>=maxChar){
                         throw("Illegal chars!!!");
                     }
-                    if((note[page][row][col+i] >= minChar && note[page][row][col+i] <= maxChar) && note[page][row][col+i]!=95 ){
+                    if((note[page][row][col+i] >= minChar && note[page][row][col+i] <= maxChar) && note[page][row][col+i]!='_' ){
                         throw("Used chars!!!");
                     }
 //                    cout << str[i] << endl;
@@ -30,10 +30,10 @@ namespace ariel {
 
             } else {
                 for (int i = 0; i < len; i++) {
-                    if(str[(size_t) i]<minChar || str[(size_t) i]>maxChar){
+                    if(str[(size_t) i]<minChar || str[(size_t) i]>=maxChar){
                         throw("Illegal chars!!!");
                     }
-                    if((note[page][row+i][col] >= minChar && note[page][row+i][col] <= maxChar) && note[page][row+i][col]!=95){
+                    if((note[page][row+i][col] >= minChar && note[page][row+i][col] <= maxChar) && note[page][row+i][col]!='_'){
                         throw("Used chars!!!");
                     }
                         note[page][row + i][col] = str[(size_t)i];
@@ -42,18 +42,18 @@ namespace ariel {
         }
 
         string Notebook::read(int page,int row, int col,  ariel::Direction dir, int numOfChars) {
-            if(page<0 || row<0 || col<0 || col>=rowLen || numOfChars<0 ){
+            if(page<0 || row<0 || col<0 || col>=rowLen || numOfChars<=0 ){
                 throw("Illegal arguments");
             }
             string str;
             if (dir == Direction::Horizontal) {
-                if(numOfChars+col>=rowLen){
+                if(numOfChars+col > rowLen){
                     throw("Illegal arguments");
                 }
                 for (int i = 0; i < numOfChars; i++) {
                     if (note[page][row + i][col] != '~') {
                         //if there's no char -> '_'
-                        if ((note[page][row][col + i] >= minChar && note[page][row][col + i] <= maxChar) || note[page][row][col + i]==95) {
+                        if ((note[page][row][col + i] >= minChar && note[page][row][col + i] <= maxChar) || note[page][row][col + i]=='_') {
                             str += note[page][row][col + i];
                         }
                             //there's a char -> don't touch
@@ -63,8 +63,8 @@ namespace ariel {
                         }
                     }
                         //there's '~' -> don't touch
-                        else{
-                            str += '~';
+                    else{
+                         str += '~';
 
 
                     }
@@ -76,7 +76,7 @@ namespace ariel {
                 for (int i = 0; i < numOfChars; i++) {
                     if (note[page][row + i][col] != '~') {
                         //if there's no char -> '_'
-                        if ((note[page][row+ i][col ] < minChar || note[page][row + i][col] > maxChar) || note[page][row+ i][col ]==95) {
+                        if ((note[page][row+ i][col ] < minChar || note[page][row + i][col] > maxChar) || note[page][row+ i][col ]=='_') {
 //                            note[page][row+ i][col ] = '_';
                             str += '_';
                         }
@@ -107,10 +107,14 @@ namespace ariel {
         }
 
         void Notebook::erase(int page,int row, int col,  ariel::Direction dir, int numOfChars) {
-            if(page<0 || row<0 || col<0 || col>=rowLen || numOfChars<0 || numOfChars+col>=rowLen){
+            if(page<0 || row<0 || col<0 || col>=rowLen || numOfChars<0 ){
                 throw("Illegal arguments");
             }
+
             if (dir == Direction::Horizontal) {
+                if( numOfChars+col>=rowLen){
+                    throw("Illegal arguments");
+                }
                 for (int i = 0; i < numOfChars; i++) {
                     note[page][row][col + i]='~';
                 }
@@ -123,12 +127,24 @@ namespace ariel {
         }
 
         int Notebook::show(int num) {
+            if(num<0){
+                throw("Illegal page");
+            }
+            for (int i = 0; i < note[num].size(); i++) {
+                for(int j=0; j<rowLen;  j++){
+                    cout<<note[num][i][j];
+                }
+                cout<<endl;
+            }
             return 0;
 
         }
 
 
     };
+
+
+
 
 
 
